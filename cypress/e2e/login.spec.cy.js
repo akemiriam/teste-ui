@@ -2,8 +2,15 @@
 
 context ('Funcionalidade Login', () =>{
 
-    it('Deve fazer login com sucesso', () => {
+    beforeEach(() => {
         cy.visit('https://www.netoffice.com.br/ativaempresa.php')
+    });
+
+    afterEach(() => {
+        cy.screenshot()
+    });
+
+    it.only('Deve fazer login com sucesso', () => {
         cy.get('#bt_entrar_empresa').click()
         cy.get('#cod_empresa').type('demo')
         cy.get('#login-modal > .modal-dialog > .modal-content > .modal-body > .login-form-container > .login-form > .btn').click() 
@@ -15,7 +22,6 @@ context ('Funcionalidade Login', () =>{
 
     })
     it('Deve exibir uma mensagem de erro ao inserir usuário inválido', ()=> {
-        cy.visit('https://www.netoffice.com.br/ativaempresa.php')
         cy.get('#bt_entrar_empresa').click()
         cy.get('#cod_empresa').type('demo')
         cy.get('#login-modal > .modal-dialog > .modal-content > .modal-body > .login-form-container > .login-form > .btn').click() 
@@ -26,7 +32,6 @@ context ('Funcionalidade Login', () =>{
     })
 
     it('Deve exibir uma mensagem de erro ao inserir senha inválida', ()=> {
-        cy.visit('https://www.netoffice.com.br/ativaempresa.php')
         cy.get('#bt_entrar_empresa').click()
         cy.get('#cod_empresa').type('demo')
         cy.get('#login-modal > .modal-dialog > .modal-content > .modal-body > .login-form-container > .login-form > .btn').click() 
